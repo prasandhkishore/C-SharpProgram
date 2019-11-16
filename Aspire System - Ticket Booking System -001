@@ -1,6 +1,40 @@
 /*
-
-
+Create the program for Ticket Booking System:
+   1.System shows the no. of ticket available and price per ticket
+   2.The user enter the name, date of birth, no. of tickets for booking
+   3.If the user is senior citizen then they eligible for 50% discount in the bill amount
+   4.System display the remaining tickets available
+   5.If no. of tickets entered by the user is highest than the available tickets, System shouldn't allow for booking
+   
+   Sample Output:
+   **************
+   Total Ticket Availability
+   10
+   Price Per Ticket
+   120
+   
+   Do you want to Book Ticket (yes/no)
+   yes
+   Enter Name
+   Prasandh
+   Enter Date Of Birth
+   31/03/1959
+   Enter No. of Tickets
+   3
+   Your actual Bill Amount is : 360
+   You are Senior Citizen and You are eligible for 50% discount
+   Your Net Amount is : 180
+   The Remaining Ticket availability is : 7
+   
+   Do you want to continue Booking (yes/no)
+   yes
+   Enter Name
+   Kishore
+   Enter Date Of Birth
+   27/02/1996
+   Enter No. of Tickets
+   8
+   Sorry The Ticket availability is only 7
 */
 using System;
 using System.Collections.Generic;
