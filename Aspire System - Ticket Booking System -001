@@ -1,0 +1,115 @@
+/*
+
+
+*/
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Application
+{
+  class TicketBookingSystem
+   {
+      static void Main(string[] args)
+      {
+         Server server = new Server();
+         server.ticketAvailabilityDetails();
+
+         Console.ReadKey();
+       }
+    }
+
+  
+  class Server
+    {
+      public static int ticket = 10;
+      public static int price = 120;
+      public static int billAmount;
+      
+      public void ticketAvailabilityDetails() 
+        {
+          Console.WriteLine("Total Tickets Availability :");
+          Console.WriteLine(ticket);
+          Console.WriteLine("Price per Ticket :");
+          Console.WriteLine(price);
+          Console.WriteLine("Do you want to Book ticket (yes/no)");
+          String condition = Console.ReadLine();
+         
+          if(condition=="yes")
+           getUserDetails();
+
+          else{
+           Console.WriteLine("Thanks for visiting our website!!!");
+           Console.ReadKey();
+           }
+         }
+
+       public void getUserDetails() 
+         {
+            Console.WriteLine("Enter Name :");
+            String name = Console.ReadLine();
+            Console.WriteLine("Enter Date Of Birth (dd/mm/yyyy) :");
+            String [] dob = Console.ReadLine().Split('/');
+            int age = 2019 - Convert.ToInt32(dob[2]);
+            Console.WriteLine("Enter No. of Tickets :");
+            int requiredTickets = Convert.ToInt32(Console.ReadLine());
+
+            if(requiredTickets<=ticket)
+             {
+              ticket = ticket - requiredTickets;
+              billAmount = requiredTickets * price;
+              BillingSection billingSection = new BillingSection();
+              if(age>=30)
+                billingSection.discountPrice();
+              else
+                billingSection.normalPrice();
+              }
+            else{
+              Console.WriteLine("Sorry the ticket availibility is only : " + ticket);
+              Console.ReadKey();
+              }
+          }
+    }
+
+   class BillingSection 
+    {
+       
+      ContinueBooking continueBooking = new ContinueBooking();
+      public void discountPrice() 
+       {
+              Console.WriteLine("Your Actual Bill Amount is : "+ Server.billAmount);
+              Console.WriteLine("You are Senior Citizen and you are eligible for 50% discount");
+              Console.WriteLine("Your Net Amount is : "+ Server.billAmount/2);
+              Console.WriteLine("The Remaining Ticket availability is : "+Server.ticket);
+              Console.WriteLine();
+              continueBooking.repeat();
+        }   
+
+      public void normalPrice()
+       {
+              Console.WriteLine("Your Bill Amount is : "+ Server.billAmount);
+              Console.WriteLine("The Remaining Ticket availability is : "+Server.ticket);
+              Console.WriteLine();
+              continueBooking.repeat();
+       }  
+     }
+
+    class ContinueBooking
+    {
+      Server server = new Server(); 
+      public void repeat() 
+      {
+              Console.WriteLine("Do you want to continue Booking (yes/no)");
+              String respond = Console.ReadLine();;
+              if(respond == "yes")
+                server.getUserDetails();
+              else{
+                Console.WriteLine("Thanks for visiting our website!!!");
+                Console.ReadKey();
+              }
+       }
+     }
+
+}
